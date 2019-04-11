@@ -1,0 +1,52 @@
+{
+  "name": "stock-history",
+  "version": "1.0.0",
+  "description": "git@github.com:flowck/stock-history-api.git",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "mocha",
+    "p": "prettier --write 'src/**/*.js'",
+    "p:w": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
+    "start": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/flowck/stock-history-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "api",
+    "data",
+    "stock"
+  ],
+  "author": "Firmino Changani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flowck/stock-history-api/issues"
+  },
+  "homepage": "https://github.com/flowck/stock-history-api#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "eslint": "^5.10.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "express": "^4.16.4",
+    "express-validation": "^1.0.2",
+    "joi": "^14.3.0",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.0",
+    "mongoose-timestamp": "^0.6.0",
+    "swagger-ui-express": "^4.0.2"
+  },
+  "devDependencies": {
+    "onchange": "^5.2.0",
+    "prettier": "^1.15.3"
+  }
+}
