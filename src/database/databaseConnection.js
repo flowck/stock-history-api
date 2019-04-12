@@ -1,9 +1,16 @@
 // Dependencies
 const mongoose = require("mongoose");
+const config = require("./config.json");
+
+// Set the development environment
+if (process.env.NODE_ENV === undefined) {
+  process.env.NODE_ENV = "dev";
+}
+
+// Access config properties of the current environment
+let dbConfig = config[process.env.NODE_ENV];
 
 // Server settings
-const SERVER_NAME = "localhost";
-const DB_NAME = "stockHistoryService";
 const OPTIONS = { useNewUrlParser: true };
 
 /*
@@ -13,7 +20,10 @@ const OPTIONS = { useNewUrlParser: true };
 module.exports.connect = () => {
   try {
     // Connect to a mongodb instance
-    mongoose.connect(`mongodb://${SERVER_NAME}/${DB_NAME}`, OPTIONS);
+    mongoose.connect(
+      `mongodb://${dbConfig["SERVER_NAME"]}/${dbConfig["DB_NAME"]}`,
+      OPTIONS
+    );
 
     // Database connection
     const DB_CONNECTION = mongoose.connection;

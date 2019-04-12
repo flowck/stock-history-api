@@ -1,0 +1,14 @@
+{
+  "test": {
+    "SERVER_NAME": "localhost",
+    "DB_NAME": "stockHistoryService_test"
+  },
+  "dev": {
+    "SERVER_NAME": "localhost",
+    "DB_NAME": "stockHistoryService"
+  },
+  "production": {
+    "SERVER_NAME": "localhost",
+    "DB_NAME": "stockHistoryService"
+  }
+}
