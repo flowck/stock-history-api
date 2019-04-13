@@ -1,6 +1,6 @@
 // Dependencies
 const mongoose = require("mongoose");
-const config = require("./config.json");
+const config = require("../../config");
 
 // Set the development environment
 if (process.env.NODE_ENV === undefined) {
