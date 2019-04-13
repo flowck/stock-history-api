@@ -1,7 +1,6 @@
 // Dependencies
 const fs = require("fs");
 const csv = require("csv-parser");
-const es = require("event-stream");
 const db = require("../database/databaseConnection");
 const StockHistories = require("../models/stockHistories");
 
@@ -15,21 +14,6 @@ db.connect();
  * HEAVY WORK
  * */
 async function importDataFromDatasets() {
-  /**
-   * cleanDbCollection: This function will clean the stockHistories collection
-   * before any insert ion is made.
-   */
-  async function cleanDbCollection() {
-    try {
-      await StockHistories.deleteMany({});
-      console.log("The stockHistories was cleaned successfully");
-    } catch (err) {
-      throw err;
-    }
-  }
-  // Call cleanDbCollection to clean the collection
-  cleanDbCollection();
-
   /**
    * getCsvFilesDir: This function will receive a string representing a directory
    * then, will read all the file directories inside the folder and return it
@@ -98,10 +82,6 @@ async function importDataFromDatasets() {
     }
   }
 
-  // getCsvRecords(
-  //   "/home/nextbss/Documentos/x/node/amex-nyse-nasdaq-stock-histories/fh_20190301/full_history/A.csv"
-  // );
-
   /**
    * initETL: This function will start this ETL script by executing all the
    * functions needed to successfully load all the .csv files, parse it and then
@@ -117,9 +97,10 @@ async function importDataFromDatasets() {
       const datasetPaths = await getCsvFilesDir(rootDirectory);
       let datasetRecords = null;
 
-      for (let dataset of datasetPaths) {
+      // Iterate over all the found dataset paths.
+      for (let path of datasetPaths) {
         // Get the dataset records
-        datasetRecords = await getCsvRecords(dataset);
+        datasetRecords = await getCsvRecords(path);
         // Save the whole dataset in the database
         await saveRecordsInDb(datasetRecords);
       }
