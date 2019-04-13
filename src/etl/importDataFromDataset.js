@@ -3,6 +3,12 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const db = require("../database/databaseConnection");
 const StockHistories = require("../models/stockHistories");
+const config = require("../../config");
+
+// Set the development environment
+if (process.env.NODE_ENV === undefined) {
+  process.env.NODE_ENV = "dev";
+}
 
 // Connect to the dabatase
 db.connect();
@@ -90,8 +96,7 @@ async function importDataFromDatasets() {
   async function initETL() {
     try {
       // Root directory
-      const rootDirectory =
-        "/home/nextbss/Documentos/x/node/amex-nyse-nasdaq-stock-histories/fh_20190301/full_history";
+      const rootDirectory = config[process.env.NODE_ENV].DATASET;
 
       // Get all the datasets directories
       const datasetPaths = await getCsvFilesDir(rootDirectory);

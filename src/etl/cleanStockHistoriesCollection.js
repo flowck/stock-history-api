@@ -1,7 +1,6 @@
 // Dependencies
 const db = require("../database/databaseConnection");
 const StockHistories = require("../models/stockHistories");
-const Users = require("../models/users");
 
 // Connect to the dabatase
 db.connect();
@@ -12,7 +11,8 @@ db.connect();
  */
 async function cleanStockHistoriesCollection() {
   try {
-    const operationResult = await Users.deleteMany({});
+    const operationResult = await StockHistories.deleteMany({});
+    console.log("Dataset is cleaned");
     return Promise.resolve(operationResult);
   } catch (err) {
     return Promise.reject(err);
