@@ -1,18 +1,28 @@
 // Dependencies
 const express = require("express");
 const morgan = require("morgan");
-const db = require("./database/databaseConnection");
+const mongodb = require("./database/databaseConnection");
+const redis = require("./database/cacheDatabseConnection");
 const routes = require("./routes");
+const cors = require("cors");
 
 // Create a new express application
 const app = express();
 
-// Connect to the database
-db.connect();
+/**
+ * Databases: MongoDB and Redis
+ */
+
+// Connect to the persistence layer: MongoDB
+mongodb.connect();
+
+// Connect to the cache layer: Redis
+redis.connect();
 
 /**
  * Configs
  */
+app.use(cors());
 app.use("/api/v1", routes);
 
 // Setup morgan only in the development env
