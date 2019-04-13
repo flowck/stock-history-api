@@ -7,7 +7,9 @@
     "test": "mocha 'test/**/*.js'",
     "p": "prettier --write 'src/**/*.js'",
     "p:w": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
-    "start": "nodemon src/app.js"
+    "start": "nodemon src/application.js",
+    "dataset:clean": "node src/etl/cleanStockHistoriesCollection.js",
+    "dataset:import": "node src/etl/importDataFromDataset.js"
   },
   "repository": {
     "type": "git",
@@ -41,11 +43,13 @@
     "event-stream": "^4.0.1",
     "express": "^4.16.4",
     "express-validation": "^1.0.2",
-    "joi": "^14.3.0",
+    "joi": "^14.3.1",
     "jsonwebtoken": "^8.4.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.4.0",
     "mongoose-timestamp": "^0.6.0",
     "morgan": "^1.9.1",
+    "redis": "^2.8.0",
     "swagger-ui-express": "^4.0.2",
     "uuidv4": "^4.0.0"
   },
