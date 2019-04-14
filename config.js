@@ -11,7 +11,7 @@ module.exports = {
   },
   production: {
     SERVER_NAME: "localhost",
-    DB_NAME: "stockHistoryService",
+    DB_NAME: "stockHistoryService_prod",
     DATASET: "../test/dataset"
   }
 }
