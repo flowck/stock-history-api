@@ -37,7 +37,6 @@ describe("Stocks", () => {
   */
   after(async () => {
     try {
-      // Import the testing dataset to the database
       const result = await cleanStockHistoriesCollection();
       return Promise.resolve(result);
     } catch(err) {
@@ -64,21 +63,46 @@ describe("Stocks", () => {
   });
 
   /**
-   * GET /stocks
+   * GET /stocks?limit=100
    * 
    * It should send a 200 response
    * It should response with an array body
    * It should response with a body with 200
    * items at least as passed in the `limit` query param
   */
-  // it ("It should response with 100 records", (done) => {
-  //   chai.request(app)
-  //     .get("/api/v1/stocks?limit=100")
-  //     .end((err, res) => {
-  //       res.should.have.status(200);
-  //       res.body.should.be.a("array");
-  //       res.body.length.should.be.eql(100);
-  //       done();
-  //     });
-  // });
+  it ("It should response with 100 records", (done) => {
+    chai.request(app)
+      .get("/api/v1/stocks?limit=100")
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a("array");
+        res.body.length.should.be.eql(100);
+        done();
+      });
+  });
+
+  /**
+   * GET /stocks?year=2000
+   * 
+   * It should send a 200 response
+   * It should response with an array body
+   * It should response with a body with at least on record
+   * dated from the year 2000
+  */
+ it ("It should response with record from 2000", (done) => {
+  chai.request(app)
+    .get("/api/v1/stocks?year=2000")
+    .end((err, res) => {
+      res.should.have.status(200);
+      res.body.should.be.a("array");
+      console.log("BODY: ", res.body[0]);
+      // Find at least one record with a date from the year 2000 
+      const record = res.body.find(record => {
+        return new Date(record.date).getFullYear() === 2000;
+      });
+      // record.should.be.a("object");
+      console.log(record);
+      done();
+    });
+});
 });

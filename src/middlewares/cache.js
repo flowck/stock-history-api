@@ -10,6 +10,8 @@ module.exports.cache = async (req, res, next) => {
   const { limit, year } = req.query;
   const currentYear = new Date().getFullYear();
 
+  // redisClient.flushall();
+
   /**
    * CheckClient: This function will check if redis has records
    * in memory, if so, will send a response. Otherwise will continue
