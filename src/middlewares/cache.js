@@ -1,5 +1,5 @@
 // Dependencies
-const redisClient = require("../database/cacheDatabseConnection").client;
+const redisClient = require("../database/cacheDatabaseConnection").client;
 
 /**
  * cache: This module is a middleware that will intercept the
