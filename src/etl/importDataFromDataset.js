@@ -6,8 +6,12 @@ const StockHistories = require("../models/stockHistories");
 const env = process.env.NODE_ENV || "dev";
 const config = require("../../config")[env];
 
-// Connect to the dabatase
-db.connect();
+// Prevent connecting to the database in the test environment
+// This operation will be handled in the test file
+if (env !== "test") {
+  // Connect to the dabatase
+  db.connect();
+}
 
 /**
  * importDataFromDatasets: This function will handle the import process

@@ -1,8 +1,15 @@
 // Dependencies
 const db = require("../database/databaseConnection");
 const StockHistories = require("../models/stockHistories");
-// Connect to the dabatase
-db.connect();
+const env = process.env.NODE_ENV;
+
+// Prevent connecting to the database in the test environment
+// This operation will be handled in the test file
+if (env !== "test") {
+  // Connect to the dabatase
+  db.connect();
+}
+
 /**
  * cleanStockHistoriesCollection: This function will clean the stockHistories collection
  * before any insert ion is made.
