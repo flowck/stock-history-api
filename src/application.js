@@ -5,6 +5,8 @@ const mongodb = require("./database/databaseConnection");
 const redis = require("./database/cacheDatabseConnection");
 const routes = require("./routes");
 const cors = require("cors");
+const swaggerUI = require("swagger-ui-express");
+const swaggerDoc = require("./swagger/swagger.json");
 
 // Create a new express application
 const app = express();
@@ -27,6 +29,7 @@ app.use("/api/v1", routes);
 
 // Setup morgan only in the development env
 if (process.env.NODE_ENV === "dev") {
+  app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
   app.use(morgan("tiny"));
 }
 /**

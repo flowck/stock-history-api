@@ -1,0 +1,115 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "An API built with Nodejs/Express that provides the stocks histories from AMEX, NYSE, and NASDAQ",
+    "version": "1.0.0",
+    "title": "StockHistory API",
+    "contact": {
+      "email": "firmino.changani@gmail.com"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "Sandbox server"
+    },
+    {
+      "url": "https://stockhistoryapi.herokuapp/api/v1",
+      "description": "Production server"
+    }
+  ],
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/stocks": {
+      "get": {
+        "tags": [
+          "stocks"
+        ],
+        "summary": "Get stock history",
+        "description": "",
+        "operationId": "getStock",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the results",
+            "required": false,
+            "minimum": 50,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "description": "Return results from the specified year",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list with all the users"
+          },
+          "500": {
+            "description": "An error occured"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "JWT Authorization: Bearer {token}"
+    }
+  },
+  "definitions": {
+    "Stocks": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "volume": {
+          "type": "number",
+          "format": "float"
+        },
+        "open": {
+          "type": "number",
+          "format": "float"
+        },
+        "close": {
+          "type": "number",
+          "format": "float"
+        },
+        "high": {
+          "type": "number",
+          "format": "float"
+        },
+        "low": {
+          "type": "number",
+          "format": "float"
+        },
+        "adjustedClosePrice": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "xml": {
+        "name": "Order"
+      }
+    }
+  }
+}
