@@ -3,12 +3,8 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const db = require("../database/databaseConnection");
 const StockHistories = require("../models/stockHistories");
-const config = require("../../config");
-
-// Set the development environment
-if (process.env.NODE_ENV === undefined) {
-  process.env.NODE_ENV = "dev";
-}
+const env = process.env.NODE_ENV || "dev";
+const config = require("../../config")[env];
 
 // Connect to the dabatase
 db.connect();
@@ -96,7 +92,7 @@ async function importDataFromDatasets() {
   async function initETL() {
     try {
       // Root directory
-      const rootDirectory = config[process.env.NODE_ENV].DATASET;
+      const rootDirectory = config.DATASET;
 
       // Get all the datasets directories
       const datasetPaths = await getCsvFilesDir(rootDirectory);
@@ -109,15 +105,19 @@ async function importDataFromDatasets() {
         // Save the whole dataset in the database
         await saveRecordsInDb(datasetRecords);
       }
-
-      // End the execution
-      // process.exit(1);
     } catch (err) {
       throw err;
     }
   }
 
+  // Init the ETL process
   initETL();
 }
 
-importDataFromDatasets();
+// Prevent execution while testing
+if (env !== "test") {
+  importDataFromDatasets();
+}
+
+// Export as a module
+module.exports = importDataFromDatasets;
