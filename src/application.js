@@ -26,7 +26,7 @@ app.use(cors());
 app.use("/api/v1", routes);
 
 // Setup morgan only in the development env
-if (process.env.NODE_ENV !== "test" || process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV === "dev") {
   app.use(morgan("tiny"));
 }
 /**
