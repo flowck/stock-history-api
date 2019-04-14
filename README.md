@@ -51,6 +51,12 @@ dev: {
 
 ``` npm start ```
 
+## API documentation
+
+This project uses OpenAPI and Swagger to generate the documentation.
+
+``` http://localhost:3000/api/docs ```
+
 ## Cleaning the dataset from the database
 
 ``` npm run dataset:clean ```

@@ -46,7 +46,7 @@
     "mongoose": "^5.4.0",
     "morgan": "^1.9.1",
     "redis": "^2.8.0",
-    "swagger-ui-express": "^4.0.2",
+    "swagger-ui-express": "^4.0.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
