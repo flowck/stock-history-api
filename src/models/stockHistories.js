@@ -1,6 +1,5 @@
 // Dependencies
 const mongoose = require("mongoose");
-const timestamps = require("mongoose-timestamp");
 
 // Stock histories' schema
 const stockHistoriesSchema = new mongoose.Schema({
@@ -33,9 +32,6 @@ const stockHistoriesSchema = new mongoose.Schema({
     required: true
   }
 });
-
-// Set mongoose-timestamps to generate the: createdAt and updatedAt fields.
-stockHistoriesSchema.plugin(timestamps);
 
 // Export the stockistories' model
 module.exports = mongoose.model("StockHistories", stockHistoriesSchema);
