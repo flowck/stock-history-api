@@ -6,7 +6,10 @@ const chai = require("chai");
 const should = chai.should();
 const expect = chai.expect;
 const cleanStockHistoriesCollection = require("../../src/etl/cleanStockHistoriesCollection");
+const db = require("../../src/database/databaseConnection");
 
+// Connect to the database
+db.connect();
 
 /**
  * Test the ../../etl/cleanStockHistoriesCollection.js
