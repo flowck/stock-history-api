@@ -1,11 +1,12 @@
+// Explicity change the enviroment to test
+process.env.NODE_ENV = "test";
+
 // Dependencies
 const chai = require("chai");
 const should = chai.should();
 const expect = chai.expect;
 const cleanStockHistoriesCollection = require("../../src/etl/cleanStockHistoriesCollection");
 
-// Set the environment to: test
-process.env.NODE_ENV = "test";
 
 /**
  * Test the ../../etl/cleanStockHistoriesCollection.js
@@ -16,16 +17,13 @@ describe("Clean stockHistories collection", () => {
       // Execute the script
       const operationResult = await cleanStockHistoriesCollection();
 
-      console.log(operationResult);
-      
-      // console.log(typeof operationResult);
-      operationResult.should.be.a("number");
+      operationResult.should.be.a("object");
+      operationResult.ok.should.be.eql(1);
 
       // End execution
-      // done();
-      // process.exit();
-    } catch (e) {
-      // done(e);
+      return Promise.resolve(operationResult);
+    } catch (err) {
+      return Promise.reject(err);
     }
   });
 });
