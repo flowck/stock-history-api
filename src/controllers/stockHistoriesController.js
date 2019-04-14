@@ -23,14 +23,14 @@ module.exports.getStocks = async (req, res) => {
       parseInt(limit) || 50
     );
 
-    // console.log("EXE");
-
     // Cache the results in memory for 30 minutes until it expires
-    redisClient.setex("stockHistories", 1800, JSON.stringify(stocks));
+    if (stocks.length > 0) {
+      redisClient.setex("stockHistories", 1800, JSON.stringify(stocks));
+    }
     // Send the request response
     res.status(200).json(stocks);
   } catch (err) {
     // Send an error 400 response
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 };
