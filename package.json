@@ -4,10 +4,10 @@
   "description": "git@github.com:flowck/stock-history-api.git",
   "main": "src/app.js",
   "scripts": {
-    "test": "mocha 'test/**/*.js'",
+    "test": "cross-env NODE_ENV=test && mocha 'test/**/*.js' --exit",
     "p": "prettier --write 'src/**/*.js'",
     "p:w": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
-    "start": "nodemon src/application.js",
+    "start": "cross-env NODE_ENV=dev nodemon src/application.js",
     "dataset:clean": "node src/etl/cleanStockHistoriesCollection.js",
     "dataset:import": "node src/etl/importDataFromDataset.js"
   },
@@ -57,6 +57,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "onchange": "^5.2.0",
-    "prettier": "^1.15.3"
+    "prettier": "^1.15.3",
+    "cross-env": "^5.2.0"
   }
 }
