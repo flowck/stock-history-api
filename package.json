@@ -7,7 +7,8 @@
     "test": "cross-env NODE_ENV=test && mocha 'test/**/*.js' --exit",
     "p": "prettier --write 'src/**/*.js'",
     "p:w": "onchange 'src/**/*.js' -- prettier --write {{changed}}",
-    "start": "cross-env NODE_ENV=dev nodemon src/application.js",
+    "start": "cross-env NODE_ENV=production node src/application.js",
+    "dev": "nodemon src/application.js",
     "dataset:clean": "node src/etl/cleanStockHistoriesCollection.js",
     "dataset:import": "node src/etl/importDataFromDataset.js"
   },

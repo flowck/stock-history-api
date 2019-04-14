@@ -1,5 +1,38 @@
 # Stock History API
 
+Stock History API is nodejs service that expose an API serving the stock history of AMEX, NASDAQ and NYSE from 1970 to 2019. 
+
+![Stock history web app](./stock-history-webapp.gif)
+
+Thanks to a dataset provided by [Jiun Yen](https://github.com/qks1lver) on Kaggle, this project imports the data from more than 8000 csv files to a mongodb database.
+
+In order to prevent to many hits in the database, this project uses Redis to cache results for 30 minutes until it expires.
+
+## Architecture
+
+![Architecture](./stock-history-api-architecture.png)
+
+## Project structure
+
+```
+stock-history
+  node_modules
+  src
+    /controllers
+    /database
+    /etl
+    /middlewares
+    /models
+    /routes
+    /swagger
+    application.js
+  test
+    /controllers
+    /dataset
+    /etl
+
+```
+
 ## Running in your local machine
 
 To run this project in your machine you will need these assets and tools installed:
@@ -7,7 +40,7 @@ To run this project in your machine you will need these assets and tools install
 * Nodejs >= 10.11.0
 * MongoDB >= 4.0.9
 * Redis >= 5.0.4
-* [Dataset: NASDAQ and NYSE stocks histories](https://www.kaggle.com/qks1lver/nasdaq-and-nyse-stocks-histories)
+* [Dataset: NASDAQ and NYSE stocks histories](https://www.kaggle.com/qks1lver/amex-nyse-nasdaq-stock-histories)
 
 ## Getting started
 
@@ -70,6 +103,10 @@ This project uses OpenAPI and Swagger to generate the documentation.
 This project uses prettier, and to enable the auto-fix you just need to run the command bellow in your terminal while writing code:
 
 ``` npm run p:w ```
+
+## Acknowledgements
+
+[Jin Yen](https://github.com/qks1lver)
 
 ## License 
 
