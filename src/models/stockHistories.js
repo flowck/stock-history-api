@@ -31,12 +31,6 @@ const stockHistoriesSchema = new mongoose.Schema({
   adjustedClosePrice: {
     type: Number,
     required: true
-  },
-  symbol: {
-    type: String
-  },
-  companyName: {
-    type: String
   }
 });
 
