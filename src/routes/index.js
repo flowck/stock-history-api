@@ -4,8 +4,6 @@
  */
 
 // Dependencies
-const routeRules = require("./validations");
-const validate = require("express-validation");
 const api = require("express").Router();
 const stockHistoriesController = require("../controllers/stockHistoriesController");
 const cache = require("../middlewares/cache").cache;
@@ -18,11 +16,6 @@ api.get("/", (req, res) => {
  * /stocks
  *
  */
-api.get(
-  "/stocks",
-  validate(routeRules.getStocks),
-  cache,
-  stockHistoriesController.getStocks
-);
+api.get("/stocks", cache, stockHistoriesController.getStocks);
 
 module.exports = api;
