@@ -1,4 +1,4 @@
 node_modules
-arn.lock
+yarn.lock
 yarn-error.log
 package-lock.json
